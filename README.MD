@@ -152,7 +152,7 @@ cambio nel file config di [database](/config/database.php)per sincronizzarli con
             'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => env('DB_CHARSET', 'utf8mb4'),
-            'collation' => env('DB_COLLATION', 'utf8mb4_general_ci'), #campo modificato 
+            'collation' => env('DB_COLLATION', 'utf8mb4_general_ci'), #campo modificato per renderlo uguale su phpmyadmin 
             'prefix' => '',
             'prefix_indexes' => true,
             'strict' => true,
@@ -163,3 +163,34 @@ cambio nel file config di [database](/config/database.php)per sincronizzarli con
         ],
 
 ```
+configurato il database, vado a lanciare i seguenti comandi per installare Orchid:
+```bash
+- composer require orchid/platform
+
+- php artisan orchid:install
+```
+con il seguente comando vado a configuare un utente di tipo Admin tramite Orchid:
+```bash
+php artisan orchid:admin 
+```
+nell'eseguire il comando precedente, Orchid chiederà di impostare la mail, nome utente e password.(per i più pigri nel caso c'è questo comando : php artisan orchid:admin admin admin@admin.com password che salta il passaggio di inserire i dati)
+
+
+fatti questi passaggi, possiamo lanciare il comando :
+
+```bash
+php artisan serve
+```
+
+e scrivendo la rotta localhost/admin ( che di default solitamente è 127.0.0.1:8000, ma potrebbe variare se avete fatto modifiche)si potrà aprire la pagina di login 
+
+- milestone 2: creazione Model e migration 
+
+partiamo lanciando i seguenti comandi per la creazione dei Model con migration e seeder :
+
+```bash
+php artisan make:model Company -ms
+php artisan make:model Employer -ms
+```
+
+vado poi a compilare i [Model](/app/Models/) inserendo i campi riempibili e le relazioni e compilo [migrazioni](/database/migrations/) e [seeder](/database/seeders/).
