@@ -7,28 +7,9 @@ Questo esercizio fa parte della serie di esercizi proposti da Boolean durante il
 
 1. [consegna](#consegna)
 2. [considerazioni_pre-progetto](#considerazioni-pre-progetto)
-3. [milestone](#milestone)
-4. [esecuzione](#esecuzione)
+3. [strumenti-aggiuntivi](#strumenti-aggiuntivi )
+3. [esecuzione](#esecuzione-milestone)
 5. [prossimamente-sul-piccolo-schermo](#to-do)
-
-## considerazioni pre-progetto
-l'esercizio prevede la relizzazione di un crm in Laravel.
-Per prima cosa ragiono sulle entità che ci sono in questo progetto. In questo caso abbiamo :
-<ul>
-  <li style="color: green;">Utente </li>
-  <li style="color: green;">Azienda</li>
-  <li style="color: green;">Impiegato</li>
-</ul>
-
-<span style="color: green;">L'Utente</span> avrà la possibilità di <span style="color: red;">creare, aggiornare, eliminare e vedere</span> le <span style="color: green;">Aziende</span> ed i relativi <span style="color: green;">Impiegati</span>.
-
-Per quanto riguarda le relazioni, considero una relazione one to many tra Azienda e Impiegato, poichè un'azienda può avere più Impiegati ma un Impiegato sarà legato ad una sola Azienda.
-
-Per quanto riguarda la versione, proverò Laravel 11 come prova, come stimolo di miglioramento ed anche per vedere le differenze tra Laravel 11 e 10.
-
-Durante la lezione del coding training è stato suggerito l'utilizzo di Builder come [Orchid](https://orchid.software/) e di [Filament](https://filamentphp.com/) come strumenti per accelerare la creazione della parte grafica del progetto. 
-Al momento tengo in considerazione l'idea di usare Orchid anche se ho  bisogno di un investimento di tempo per capirne l'utilizzo.
-Valuto anche la possibilità di usare [Heidisql](https://www.heidisql.com/download.php)
 
 ## Consegna
 
@@ -103,6 +84,27 @@ Aggiungi una sezione con **statistiche** generali:
 ### Consigli generici
 
 Facciamo attenzione a realizzare correttamente il database: essendo il punto di partenza della nostra applicazione, assicurandoci di aver inserito tutte le caratteristiche richiesta dalla consegna.
+
+## considerazioni pre-progetto
+l'esercizio prevede la relizzazione di un crm in Laravel.
+Per prima cosa ragiono sulle entità che ci sono in questo progetto. In questo caso abbiamo :
+<ul>
+  <li style="color: green;">Utente </li>
+  <li style="color: green;">Azienda</li>
+  <li style="color: green;">Impiegato</li>
+</ul>
+
+<span style="color: green;">L'Utente</span> avrà la possibilità di <span style="color: red;">creare, aggiornare, eliminare e vedere</span> le <span style="color: green;">Aziende</span> ed i relativi <span style="color: green;">Impiegati</span>.
+
+Per quanto riguarda le relazioni, considero una relazione one to many tra Azienda e Impiegato, poichè un'azienda può avere più Impiegati ma un Impiegato sarà legato ad una sola Azienda.
+
+Per quanto riguarda la versione, proverò Laravel 11 come prova, come stimolo di miglioramento ed anche per vedere le differenze tra Laravel 11 e 10.
+
+Durante la lezione del coding training è stato suggerito l'utilizzo di Builder come [Orchid](https://orchid.software/) e di [Filament](https://filamentphp.com/) come strumenti per accelerare la creazione della parte grafica del progetto. 
+Al momento tengo in considerazione l'idea di usare Orchid anche se ho  bisogno di un investimento di tempo per capirne l'utilizzo.
+Valuto anche la possibilità di usare [Heidisql](https://www.heidisql.com/download.php)
+
+## strumenti aggiuntivi
 
 ## Esecuzione milestone
 
@@ -189,8 +191,20 @@ e scrivendo la rotta localhost/admin ( che di default solitamente è 127.0.0.1:8
 partiamo lanciando i seguenti comandi per la creazione dei Model con migration e seeder :
 
 ```bash
-php artisan make:model Company -ms
-php artisan make:model Employer -ms
+php artisan make:model Company -m
+php artisan make:model Employer -m
 ```
 
 vado poi a compilare i [Model](/app/Models/) inserendo i campi riempibili e le relazioni e compilo [migrazioni](/database/migrations/) e [seeder](/database/seeders/).
+
+- milestone 3 : creazione seeders
+
+vado a lanciare i seguenti comandi per creare i seeder :
+```bash
+php artisan make:seeder CompanySeeder
+php artisan make:seeder EmployerSeeder
+```
+aggiungo i seeder nel [DatabaseSeeder](/database/seeders/DatabaseSeeder.php) e vado a compilare i seeder per la creazione di aziende ed impiegati.
+
+- milestone 4:creazione interfaccia grafica 
+nella milestone 1 sono andato ad installare Orchid, andando così ad avere una interfaccia già pronta per il progetto. Ora vado a togliere i segnaposto nell'interfaccia per andare ad aggiungere le pagine delle mie Entità(Company e Employee). 
