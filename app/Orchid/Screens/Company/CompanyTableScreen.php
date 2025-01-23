@@ -62,7 +62,13 @@ class CompanyTableScreen extends Screen
             Layout::table('companies', [
                 TD::make('id', 'ID'),
                 TD::make('name', 'Nome'),
-                TD::make('logo', 'Logo'),
+                TD::make('logo', 'Logo')
+                ->render(function (Company $company) {
+                    if ($company->logo) {
+                        return "<img src='". asset('storage/2025/01/23' . $company->logo) . "' alt='Immagine' width='100'>";
+                    }
+                    return 'Logo dell\'azienda non presente';
+                }),
                 TD::make('VAT_number', 'P.iva'),
                 TD::make('Actions')
                     ->alignRight()

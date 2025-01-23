@@ -1,6 +1,16 @@
 <?php
 
 namespace App\Orchid\Screens\Company;
+	use Orchid\Screen\Actions\Link;
+	use Orchid\Screen\Actions\Button;
+	use Orchid\Screen\Fields\Input;
+    use Orchid\Screen\Fields\Picture;
+	use Orchid\Screen\Fields\TextArea;
+	use Orchid\Support\Facades\Layout;
+	use Orchid\Support\Facades\Toast;
+	use Illuminate\Http\RedirectResponse;
+	use App\Models\Company;
+
 
 use Orchid\Screen\Screen;
 
@@ -23,7 +33,7 @@ class CompanyFormScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'CompanyFormScreen';
+        return 'Aggiungi una nuova azienda';
     }
 
     /**
@@ -43,6 +53,35 @@ class CompanyFormScreen extends Screen
      */
     public function layout(): iterable
     {
-        return [];
+        return [
+            Layout::rows([
+                Input::make('company.name')
+                    ->title('Nome')
+                    ->placeholder('Inserisci il nome dell\'azienda')
+                    ->required(),
+
+                Input::make('company.VAT_number')
+                    ->title('Partita IVA')
+                    ->placeholder('Inserisci la partita IVA')
+                    ->required(),
+
+                    Picture::make('company.logo')
+                    ->placeholder('Carica il logo dal tuo PC')
+                    ->title('Logo'),
+
+                button::make('Salva')
+                    ->method('saveCompany')
+                    ->class('btn btn-primary'),
+            ])->title('Form Azienda'),
+
+
+        ];
     }
+    public function saveCompany(): RedirectResponse
+		{
+			$data = request()->get('company');
+			Company::create($data);
+			Toast::info('Azienda salvata  con successo!');
+			return redirect()->route('platform.company.table');
+		}
 }

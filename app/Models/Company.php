@@ -12,7 +12,7 @@ class Company extends Model {
         'name',
         'email',
         'logo',
-        'VAT_number'
+        'VAT_number',
     ];
 
     public function employees()
