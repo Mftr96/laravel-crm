@@ -79,7 +79,9 @@ class CompanyFormScreen extends Screen
     }
     public function saveCompany(): RedirectResponse
 		{
+            //salvare logo in storage
 			$data = request()->get('company');
+            //$data['logo'] = request()->file('company.logo')->store('company_logos');
 			Company::create($data);
 			Toast::info('Azienda salvata  con successo!');
 			return redirect()->route('platform.company.table');
