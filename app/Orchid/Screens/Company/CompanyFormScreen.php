@@ -1,15 +1,16 @@
 <?php
 
 namespace App\Orchid\Screens\Company;
-	use Orchid\Screen\Actions\Link;
-	use Orchid\Screen\Actions\Button;
-	use Orchid\Screen\Fields\Input;
-    use Orchid\Screen\Fields\Picture;
-	use Orchid\Screen\Fields\TextArea;
-	use Orchid\Support\Facades\Layout;
-	use Orchid\Support\Facades\Toast;
-	use Illuminate\Http\RedirectResponse;
-	use App\Models\Company;
+use Illuminate\Support\Facades\Storage;
+use Orchid\Screen\Actions\Link;
+use Orchid\Screen\Actions\Button;
+use Orchid\Screen\Fields\Input;
+use Orchid\Screen\Fields\Picture;
+use Orchid\Screen\Fields\TextArea;
+use Orchid\Support\Facades\Layout;
+use Orchid\Support\Facades\Toast;
+use Illuminate\Http\RedirectResponse;
+use App\Models\Company;
 
 
 use Orchid\Screen\Screen;
@@ -23,7 +24,9 @@ class CompanyFormScreen extends Screen
      */
     public function query(): iterable
     {
-        return [];
+        return [
+            'company' => Company::find(request()->route('company')),
+        ];
     }
 
     /**
@@ -33,6 +36,9 @@ class CompanyFormScreen extends Screen
      */
     public function name(): ?string
     {
+        if (request()->routeIs('platform.company.edit')) {
+            return 'Modifica azienda';
+        }
         return 'Aggiungi una nuova azienda';
     }
 
@@ -57,7 +63,7 @@ class CompanyFormScreen extends Screen
             Layout::rows([
                 Input::make('company.name')
                     ->title('Nome')
-                    ->placeholder('Inserisci il nome dell\'azienda')
+                    ->placeholder(isset($company->id) ? 'ciao' : 'Inserisci il nome dell\'azienda')
                     ->required(),
 
                 Input::make('company.VAT_number')
@@ -65,7 +71,7 @@ class CompanyFormScreen extends Screen
                     ->placeholder('Inserisci la partita IVA')
                     ->required(),
 
-                    Picture::make('company.logo')
+                Picture::make('company.logo')
                     ->placeholder('Carica il logo dal tuo PC')
                     ->title('Logo'),
 
@@ -78,12 +84,28 @@ class CompanyFormScreen extends Screen
         ];
     }
     public function saveCompany(): RedirectResponse
-		{
-            //salvare logo in storage
-			$data = request()->get('company');
-            //$data['logo'] = request()->file('company.logo')->store('company_logos');
-			Company::create($data);
-			Toast::info('Azienda salvata  con successo!');
-			return redirect()->route('platform.company.table');
-		}
+    {
+
+        $data = request()->get('company');
+        if (request()->routeIs('platform.company.edit')) {
+            $company = Company::find(request()->route('company'));
+            if (request()->hasFile('company.logo')) {
+                // Rimuovi il vecchio logo se esiste
+                if ($company->logo) {
+                    Storage::delete($company->logo);
+                }
+                $data['logo'] = request()->file('company.logo')->store('company_logos');
+            }
+            $company->update($data);
+            Toast::info('Azienda modificata con successo!');
+            return redirect()->route('platform.company.table');
+        }
+        //salvare logo in storage
+        if (request()->file('company.logo')) {
+            $data['logo'] = request()->file('company.logo')->store('company_logos');
+        }
+        Company::create($data);
+        Toast::info('Azienda salvata  con successo!');
+        return redirect()->route('platform.company.table');
+    }
 }

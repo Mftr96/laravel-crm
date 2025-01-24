@@ -26,6 +26,7 @@ Route::screen('main', PlatformScreen::class)
     Route::screen('profile', UserProfileScreen::class)->name('platform.profile');
 	Route::screen('/companies', CompanyTableScreen::class)->name('platform.company.table');
 	Route::screen('/companies/create', CompanyFormScreen::class)->name('platform.company.create');
+	Route::screen('/companies/{company}/edit', CompanyFormScreen::class)->name('platform.company.edit');
 
 
 //Route::screen('idea', Idea::class, 'platform.screens.idea');

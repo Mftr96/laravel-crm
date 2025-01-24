@@ -68,3 +68,16 @@
 // Route::screen('/examples/grid', ExampleGridScreen::class)->name('platform.example.grid');
 // Route::screen('/examples/charts', ExampleChartsScreen::class)->name('platform.example.charts');
 // Route::screen('/examples/cards', ExampleCardsScreen::class)->name('platform.example.cards');
+
+
+
+
+// if(request()->routeIs('platform.company.edit')){
+//     $company = Company::find(request()->route('company'));
+//     if(request()->file('company.logo')){
+//         $data['logo'] = request()->file('company.logo')->store('company_logos');
+//     }
+//     $company->update($data);
+//     Toast::info('Azienda modificata con successo!');
+//     return redirect()->route('platform.company.table');
+// }

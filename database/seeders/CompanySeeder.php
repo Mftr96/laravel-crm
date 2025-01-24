@@ -30,7 +30,7 @@ class CompanySeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             $company=new Company();
             $company->name = $companies[$i];
-            //$company->logo = 'https://via.placeholder.com/150';
+            // se salvi il logo , ricordati di usare Storage::put 
             $company->VAT_number = $faker->numerify('###########');
             $company->save();
         }
