@@ -110,7 +110,7 @@ Valuto anche la possibilità di usare [Heidisql](https://www.heidisql.com/downlo
 
 sebbene nella consegna sia indicato prima la creazione dell'impalcatura, parto prima con la stesura di un grafico Entità Relazione.
 Vado a utilizzare [DrawSql](https://drawsql.app/login?redirectUrl=https%3A%2F%2Fdrawsql.app%2Fdiagrams)per andare a strutturare le entità con le loro relazioni.
-Qui di seguito è riportata la struttura del database :![immagine](/drawSQL-image-export-2025-01-22.png)
+Qui di seguito è riportata la struttura del database :![immagine](/drawSQL-image-export-2025-01-24.png)
 
 Dopo aver fatto questo passaggio inizio con l'esecuzione delle milestone:
 

@@ -81,7 +81,11 @@ class CompanyTableScreen extends Screen
                             ->method('delete', ['company' => $company->id])
                             .  Link::make('modifica')
                             ->route('platform.company.edit', $company->id)
-                            ->icon('pencil');
+                            ->icon('pencil')
+                            . Link::make('Visualizza Dipendenti')
+                            ->route('platform.employee.table', $company->id)
+                            ->icon('eye');
+
                     }),
             ])
 

@@ -5,6 +5,7 @@ use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\User\UserProfileScreen;
 use App\Orchid\Screens\Company\CompanyTableScreen;
 use App\Orchid\Screens\Company\CompanyFormScreen;
+use App\Orchid\Screens\Employee\EmployeeTableScreen;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 
@@ -27,6 +28,7 @@ Route::screen('main', PlatformScreen::class)
 	Route::screen('/companies', CompanyTableScreen::class)->name('platform.company.table');
 	Route::screen('/companies/create', CompanyFormScreen::class)->name('platform.company.create');
 	Route::screen('/companies/{company}/edit', CompanyFormScreen::class)->name('platform.company.edit');
+	Route::screen('/employee/{company}', EmployeeTableScreen::class)->name('platform.employee.table');
 
 
 //Route::screen('idea', Idea::class, 'platform.screens.idea');
