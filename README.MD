@@ -257,3 +257,18 @@ use Illuminate\Support\Facades\Route;
   
 
 ## Roadmap
+
+## Roadmap
+🏳️: da fare 
+🔨:in corso d'opera
+☑️:fatto
+milestone 1 :☑️
+milestone 2: ☑️
+milestone 3: ☑️
+milestone 4: ☑️
+bonus 1:🏳️
+bonus 2:🏳️
+menù a tendina per visualizzazione azioni :🏳️
+mettere link su nome azienda nell'index per visualizzare dipendenti azienda: 🏳️
+scrittura crud orchid(link: https://orchid.software/en/docs/packages/crud/#introduction): 🏳️
+cercare aggiunte per il crm: 🏳️
